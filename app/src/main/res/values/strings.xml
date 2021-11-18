@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">ShopApp</string>
+    <string name="username">Enter your username</string>
+    <string name="password">Enter your password</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="fName">Enter your first name</string>
+    <string name="mobile">Enter your mobile number</string>
+    <string name="signup">Signup</string>
+</resources>
