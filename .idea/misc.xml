@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Android/ShopApp/app/src/main/res/drawable/ic_login.xml" value="0.2212962962962963" />
         <entry key="..\:/Android/ShopApp/app/src/main/res/drawable/ic_register.xml" value="0.2212962962962963" />
         <entry key="..\:/Android/ShopApp/app/src/main/res/layout/activity_login.xml" value="0.25" />
         <entry key="..\:/Android/ShopApp/app/src/main/res/layout/activity_main.xml" value="0.14387031408308004" />

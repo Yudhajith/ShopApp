@@ -14,12 +14,24 @@
 
         <ImageView
             android:id="@+id/iv_ic_register"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:src="@drawable/ic_register"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+            android:id="@+id/tv_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/iv_ic_register"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:text="Login" />
+
 
         <EditText
             android:id="@+id/et_first_name"
@@ -29,7 +41,7 @@
             android:hint="@string/fName"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/iv_ic_register"/>
+            app:layout_constraintTop_toBottomOf="@+id/tv_login"/>
 
         <EditText
             android:layout_width="match_parent"
