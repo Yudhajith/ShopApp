@@ -1,6 +1,7 @@
 package com.example.shopapp.view
 
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.shopapp.R
@@ -20,12 +21,13 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun checkLoginStatus() {
-        val sharedPreferences = this.getSharedPreferences("ShoppingApp", Context.MODE_PRIVATE)
+        val sharedPreferences = this.getSharedPreferences("ShopApp", Context.MODE_PRIVATE)
 
         if (sharedPreferences.getBoolean("isLoggedIn", false)) {
 
         } else {
-
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
         }
     }
 }

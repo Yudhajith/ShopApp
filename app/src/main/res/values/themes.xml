@@ -13,4 +13,8 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+    
+    <style name="Theme.ShopApp.FullscreenContainer" parent="">
+        <item name="android:imeFullscreenBackground">@color/black</item>
+    </style>
 </resources>
