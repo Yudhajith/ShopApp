@@ -45,9 +45,9 @@ class LoginActivity : AppCompatActivity(), LoginView {
         val email = binding.etUsername.text.toString()
         val password = binding.etPassword.text.toString()
 
-        navigateToHome()
+        //avigateToHome()
 
-        //presenter.login(email, password)
+        presenter.login(email, password)
 
     }
 
