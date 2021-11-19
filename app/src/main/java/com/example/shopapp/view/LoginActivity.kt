@@ -1,13 +1,19 @@
 package com.example.shopapp.view
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.example.shopapp.databinding.ActivityLoginBinding
+import com.example.shopapp.presenter.LoginInteractor
+import com.example.shopapp.presenter.LoginPresenter
+import com.example.shopapp.utils.ContextUtil
 
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity(), LoginView {
 
     lateinit var binding: ActivityLoginBinding
     lateinit var registerFragment: RegisterFragment
+    lateinit var presenter: LoginPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,7 +40,27 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun login() {
+        ContextUtil.setLoginContext(this)
+        presenter = LoginPresenter(this, LoginInteractor())
+        val email = binding.etUsername.text.toString()
+        val password = binding.etPassword.text.toString()
 
+        navigateToHome()
+
+        //presenter.login(email, password)
+
+    }
+
+    override fun showProgress() {
+        binding.pbProgress.visibility = View.VISIBLE
+    }
+
+    override fun hideProgress() {
+        binding.pbProgress.visibility = View.GONE
+    }
+
+    override fun navigateToHome() {
+        startActivity(Intent(baseContext, HomeActivity::class.java))
     }
 
 }

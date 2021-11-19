@@ -41,6 +41,10 @@ class RegisterFragment : Fragment(), RegisterView {
             btnSignup.setOnClickListener {
                 register(fName, password, mobile, email)
             }
+
+            btnLogin.setOnClickListener {
+                startActivity(Intent(activity, LoginActivity::class.java))
+            }
         }
         return binding.root
     }

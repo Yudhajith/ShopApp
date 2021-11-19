@@ -5,10 +5,12 @@
       <map>
         <entry key="..\:/Android/ShopApp/app/src/main/res/drawable/ic_login.xml" value="0.2212962962962963" />
         <entry key="..\:/Android/ShopApp/app/src/main/res/drawable/ic_register.xml" value="0.2212962962962963" />
+        <entry key="..\:/Android/ShopApp/app/src/main/res/layout/activity_home.xml" value="0.2269021739130435" />
         <entry key="..\:/Android/ShopApp/app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="..\:/Android/ShopApp/app/src/main/res/layout/activity_main.xml" value="0.14387031408308004" />
         <entry key="..\:/Android/ShopApp/app/src/main/res/layout/activity_splash.xml" value="0.12635869565217392" />
         <entry key="..\:/Android/ShopApp/app/src/main/res/layout/fragment_register.xml" value="0.25" />
+        <entry key="..\:/Android/ShopApp/app/src/main/res/menu/drawer_list.xml" value="0.2" />
       </map>
     </option>
   </component>

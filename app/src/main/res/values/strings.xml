@@ -9,4 +9,8 @@
     <string name="signup">Signup</string>
     <string name="lottie_animation_shopping_cart">https://assets5.lottiefiles.com/packages/lf20_47pyyfcf.json</string>
     <string name="email">Enter your email</string>
+    <string name="backToLogin">Already have an account?</string>
+    <string name="profile">Profile</string>
+    <string name="setting">Settings</string>
+    <string name="logout">Logout</string>
 </resources>

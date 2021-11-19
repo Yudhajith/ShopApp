@@ -17,4 +17,9 @@
     <style name="Theme.ShopApp.FullscreenContainer" parent="">
         <item name="android:imeFullscreenBackground">@color/black</item>
     </style>
+
+    <style name="Theme.NoActionBar" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
 </resources>
