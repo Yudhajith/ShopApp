@@ -33,13 +33,16 @@ class RegisterFragment : Fragment(), RegisterView {
         presenter = RegisterPresenter(this, RegisterInteractor())
 
         binding.apply {
-            val fName = etFirstName.text.toString()
-            val password = etPassword.text.toString()
-            val mobile = etMobile.text.toString()
-            val email = etEmail.text.toString()
-
             btnSignup.setOnClickListener {
+                val fName = etFirstName.text.toString()
+                val password = etPassword.text.toString()
+                val mobile = etMobile.text.toString()
+                val email = etEmail.text.toString()
                 register(fName, password, mobile, email)
+            }
+
+            btnLogin.setOnClickListener {
+                startActivity(Intent(activity, LoginActivity::class.java))
             }
         }
         return binding.root

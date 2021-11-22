@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         val sharedPreferences = this.getSharedPreferences("ShopApp", Context.MODE_PRIVATE)
 
         if (sharedPreferences.getBoolean("isLoggedIn", false)) {
-
+            startActivity(Intent(this, HomeActivity::class.java))
         } else {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
