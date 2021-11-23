@@ -1,6 +1,6 @@
 package com.example.shopapp.presenter
 
-import com.example.shopapp.model.ProductsHelper
+import com.example.shopapp.model.helper.ProductsHelper
 import com.example.shopapp.view.ProductView
 
 class ProductPresenter(val productView: ProductView) {

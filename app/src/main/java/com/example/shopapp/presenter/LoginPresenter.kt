@@ -1,6 +1,7 @@
 package com.example.shopapp.presenter
 
-import com.example.shopapp.model.LoginHelper
+import com.example.shopapp.model.helper.LoginHelper
+import com.example.shopapp.presenter.interactor.LoginInteractor
 import com.example.shopapp.utils.ContextUtil
 import com.example.shopapp.view.LoginView
 

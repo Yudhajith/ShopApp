@@ -1,6 +1,7 @@
 package com.example.shopapp.presenter
 
-import com.example.shopapp.model.RegistrationHelper
+import com.example.shopapp.model.helper.RegistrationHelper
+import com.example.shopapp.presenter.interactor.RegisterInteractor
 import com.example.shopapp.utils.ContextUtil
 import com.example.shopapp.view.RegisterView
 

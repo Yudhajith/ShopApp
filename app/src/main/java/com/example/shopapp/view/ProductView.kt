@@ -1,6 +1,6 @@
 package com.example.shopapp.view
 
-import com.example.shopapp.model.Product
+import com.example.shopapp.model.data.Product
 
 interface ProductView {
 
