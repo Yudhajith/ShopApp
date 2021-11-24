@@ -23,12 +23,6 @@ class OrderHelper(private val context: Context, val cartView: CartView) {
         val mapper = jacksonObjectMapper()
         val params = JSONObject(mapper.writeValueAsString(orderInfo))
 
-//        params.put("shippingAddress", orderInfo.shippingAddress.toString())
-//        params.put("payment", orderInfo.payment.toString())
-//        params.put("userId", orderInfo.userId.toString())
-//        params.put("products", orderInfo.products.toString())
-//        params.put("orderSummary", orderInfo.orderSummary.toString())
-
         Log.d("OrderHelper", "placeOrder: ${params.toString()}")
 
         val request = JsonObjectRequest(
