@@ -71,8 +71,8 @@ class ProductsFragment : Fragment(), ProductView {
                 val success = databaseHandler.addItem(cartItem)
                 if (success > 0) {
                     Toast.makeText(context, "Item added to cart", Toast.LENGTH_SHORT).show()
-                    addToCartDialog.dismiss()
                 }
+                addToCartDialog.dismiss()
             }
             addToCartDialog.show()
         }

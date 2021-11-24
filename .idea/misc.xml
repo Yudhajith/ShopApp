@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Android/ShopApp/app/src/main/res/drawable-v24/ic_cancel.xml" value="0.1" />
         <entry key="..\:/Android/ShopApp/app/src/main/res/drawable/ic_decrement.xml" value="0.5703125" />
         <entry key="..\:/Android/ShopApp/app/src/main/res/drawable/ic_home.xml" value="0.2351851851851852" />
         <entry key="..\:/Android/ShopApp/app/src/main/res/drawable/ic_increment.xml" value="0.5703125" />
@@ -14,8 +15,9 @@
         <entry key="..\:/Android/ShopApp/app/src/main/res/layout/activity_main.xml" value="0.14387031408308004" />
         <entry key="..\:/Android/ShopApp/app/src/main/res/layout/activity_splash.xml" value="0.12635869565217392" />
         <entry key="..\:/Android/ShopApp/app/src/main/res/layout/dialog_add_to_cart.xml" value="0.33" />
+        <entry key="..\:/Android/ShopApp/app/src/main/res/layout/dialog_checkout.xml" value="0.25" />
         <entry key="..\:/Android/ShopApp/app/src/main/res/layout/dialog_profile.xml" value="0.5541666666666667" />
-        <entry key="..\:/Android/ShopApp/app/src/main/res/layout/fragment_cart.xml" value="0.15121580547112462" />
+        <entry key="..\:/Android/ShopApp/app/src/main/res/layout/fragment_cart.xml" value="0.25" />
         <entry key="..\:/Android/ShopApp/app/src/main/res/layout/fragment_products.xml" value="0.16" />
         <entry key="..\:/Android/ShopApp/app/src/main/res/layout/fragment_profile.xml" value="0.33" />
         <entry key="..\:/Android/ShopApp/app/src/main/res/layout/fragment_register.xml" value="0.25" />

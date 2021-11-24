@@ -12,6 +12,7 @@ import org.json.JSONObject
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.example.shopapp.model.data.User
+import com.example.shopapp.model.data.UserModel
 
 
 class LoginHelper(private val context: Context) {
@@ -35,11 +36,12 @@ class LoginHelper(private val context: Context) {
             {
                 val typeToken = object : TypeToken<User>() {}
                 val gson = Gson()
-                val user = gson.fromJson<User>(it.toString(), typeToken.type)
+                val user = gson.fromJson<User>(it.getString("user").toString(), typeToken.type)
 
                 Toast.makeText(context, "Login Successful", Toast.LENGTH_SHORT).show()
 
-                Log.i("Login", "login: Success")
+                //Log.d("Login", "login: ${user.toString()}")
+                editor.putString("userid", user._id)
                 editor.putString("name", user.firstName)
                 editor.putString("email", user.email)
                 editor.putString("mobile", user.mobile)

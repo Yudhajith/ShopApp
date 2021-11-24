@@ -41,7 +41,7 @@ class HomeActivity : AppCompatActivity(), HomeView, Communicator {
         profileFragment = ProfileFragment()
         subCategoryFragment = SubCategoryFragment()
         productsFragment = ProductsFragment()
-        cartFragment = CartFragment()
+
 
         setSupportActionBar(binding.toolbar)
         val actionBar: ActionBar? = supportActionBar
@@ -84,6 +84,8 @@ class HomeActivity : AppCompatActivity(), HomeView, Communicator {
                     binding.drawerLayout.closeDrawers()
                 }
                 R.id.cart -> {
+                    val sharedPreferences = getSharedPreferences("ShopApp", Context.MODE_PRIVATE)
+                    cartFragment = CartFragment(sharedPreferences)
                     binding.root.removeAllViews()
                     supportFragmentManager.beginTransaction().replace(binding.drawerLayout.id, cartFragment).commit()
                 }

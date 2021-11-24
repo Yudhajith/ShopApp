@@ -28,6 +28,8 @@ class DatabaseHandler(context: Context) : SQLiteOpenHelper(context, DATABASE_NAM
     fun addItem(item: CartItem): Long {
         val amount = checkIfItemExists(item.itemID)
 
+        Log.d("Database", "addItem: $amount")
+
         if (amount == 0) {
             val db = this.writableDatabase
             val contentValues = ContentValues()
@@ -103,7 +105,7 @@ class DatabaseHandler(context: Context) : SQLiteOpenHelper(context, DATABASE_NAM
     }
 
     private fun checkIfItemExists(itemID: Int) : Int {
-        val sql = "SELECT 1 FROM $TABLE_NAME WHERE $KEY_ID = $itemID"
+        val sql = "SELECT * FROM $TABLE_NAME WHERE $KEY_ID = $itemID"
         val db = this.readableDatabase
 
         var cursor: Cursor? = null
@@ -121,6 +123,7 @@ class DatabaseHandler(context: Context) : SQLiteOpenHelper(context, DATABASE_NAM
                 Log.d("DatabaseHandler", "getItems: Exception when getting items")
             }
         }
+        Log.d("Database", "checkIfItemExists: $itemAmount")
         return itemAmount
     }
 
