@@ -15,6 +15,18 @@
         app:layout_constraintStart_toStartOf="parent"/>
 
     <Button
+        android:id="@+id/btn_checkout"
+        android:backgroundTint="@color/purple_500"
+        android:padding="@dimen/small_padding"
+        android:text="Checkout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/small_margin"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <Button
         android:id="@+id/btn_empty"
         android:layout_width="50dp"
         android:backgroundTint="@color/white"
@@ -28,6 +40,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/card_view"
         android:padding="@dimen/small_padding"
+        android:layout_marginTop="@dimen/small_margin"
         app:layout_constraintTop_toBottomOf="@+id/btn_back">
 
         <TextView
@@ -50,14 +63,5 @@
             app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.cardview.widget.CardView>
-
-    <Button
-        android:id="@+id/btn_checkout"
-        android:backgroundTint="@color/purple_500"
-        android:padding="@dimen/small_padding"
-        android:text="Checkout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/card_view" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
