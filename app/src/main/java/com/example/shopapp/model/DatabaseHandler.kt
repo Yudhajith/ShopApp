@@ -10,18 +10,18 @@ import android.util.Log
 import com.example.shopapp.model.data.CartItem
 import java.lang.Exception
 
-class DatabaseHandler(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, 1) {
+class DatabaseHandler(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, 2) {
 
     override fun onCreate(db: SQLiteDatabase?) {
         val CREATE_SHOPPING_CART =
-            """CREATE TABLE $TABLE_NAME ($KEY_ID INTEGER PRIMARY KEY , 
+            """CREATE TABLE $TABLE_NAME ($KEY_ID INTEGER PRIMARY KEY, 
             $KEY_IMAGE TEXT, $KEY_NAME TEXT, $KEY_AMOUNT INTEGER, $KEY_PRICE DOUBLE)""".trimIndent()
 
         db?.execSQL(CREATE_SHOPPING_CART)
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
-        db?.execSQL("DROP TABLE IF EXISTS" + TABLE_NAME)
+        db?.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME)
         onCreate(db)
     }
 

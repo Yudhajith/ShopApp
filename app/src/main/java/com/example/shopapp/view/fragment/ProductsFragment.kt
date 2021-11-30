@@ -63,7 +63,7 @@ class ProductsFragment : Fragment(), ProductView {
             val addToCartDialog = AddToCartDialog(ContextUtil.getProductContext())
 
             addToCartDialog.setOnSuccessListener {
-                val cartItem = CartItem(product.subId,
+                val cartItem = CartItem(((product.subId * 10) + position) ,
                     product.image,
                     product.productName,
                     product.price,
