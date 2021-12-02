@@ -10,6 +10,7 @@ class ProductsViewHolder(val binding: ViewHolderProductsBinding) : RecyclerView.
     fun bindData(product: Product) {
         binding.tvProductName.text = product.productName
         binding.tvProductDescription.text = product.description
+        binding.tvProductPrice.text = "\$" + product.price
         val imageUrl = "https://rjtmobile.com/grocery/images/${product.image}"
         Picasso
             .get()

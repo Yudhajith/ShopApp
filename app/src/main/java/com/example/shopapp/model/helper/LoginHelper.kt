@@ -12,14 +12,14 @@ import org.json.JSONObject
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonObjectRequest
 import com.example.shopapp.model.data.User
-import com.example.shopapp.model.data.UserModel
+import com.example.shopapp.presenter.interactor.LoginInteractor.OnLoginFinishListener
 
 
 class LoginHelper(private val context: Context) {
 
     lateinit var requestQueue: RequestQueue
 
-    fun login(email: String, password: String) {
+    fun login(email: String, password: String, listener: OnLoginFinishListener) {
         requestQueue = Volley.newRequestQueue(context)
 
         val sharedPreferences = context.getSharedPreferences("ShopApp", Context.MODE_PRIVATE)
@@ -40,7 +40,6 @@ class LoginHelper(private val context: Context) {
 
                 Toast.makeText(context, "Login Successful", Toast.LENGTH_SHORT).show()
 
-                //Log.d("Login", "login: ${user.toString()}")
                 editor.putString("userid", user._id)
                 editor.putString("name", user.firstName)
                 editor.putString("email", user.email)
@@ -48,11 +47,12 @@ class LoginHelper(private val context: Context) {
                 editor.putBoolean("isLoggedIn", true)
 
                 editor.apply()
+                listener.onSuccess()
             },
             {
                     error ->
-                Toast.makeText(context, "Error occurred: ${error.toString()}", Toast.LENGTH_SHORT).show()
                 Log.e("Login", "login: ${error.message}")
+                listener.onFailure()
             },
 
         )

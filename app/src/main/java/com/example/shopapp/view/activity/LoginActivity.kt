@@ -3,6 +3,7 @@ package com.example.shopapp.view.activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.shopapp.databinding.ActivityLoginBinding
 import com.example.shopapp.presenter.interactor.LoginInteractor
@@ -63,6 +64,16 @@ class LoginActivity : AppCompatActivity(), LoginView {
 
     override fun navigateToHome() {
         startActivity(Intent(baseContext, HomeActivity::class.java))
+    }
+
+    override fun loginFailed() {
+        Toast.makeText(ContextUtil.getLoginContext(), "Login failed. Please check your credentials", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        finishAffinity()
+        finish()
     }
 
 }

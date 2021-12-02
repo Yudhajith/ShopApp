@@ -16,18 +16,19 @@ import com.example.shopapp.model.DatabaseHandler
 import com.example.shopapp.model.adapters.CartAdapter
 import com.example.shopapp.model.data.*
 import com.example.shopapp.model.helper.OrderHelper
+import com.example.shopapp.presenter.Communicator
 import com.example.shopapp.utils.ContextUtil
 import com.example.shopapp.view.CartView
 import com.example.shopapp.view.activity.HomeActivity
 import com.example.shopapp.view.dialog.CheckoutDialog
 
-class CartFragment(private val sharedPreferences: SharedPreferences) : Fragment(), CartView {
+class CartFragment(private val sharedPreferences: SharedPreferences) : Fragment() {
 
     lateinit var binding: FragmentCartBinding
     lateinit var adapter: CartAdapter
     lateinit var databaseHandler: DatabaseHandler
-    lateinit var orderHelper: OrderHelper
     private var cart = ArrayList<CartItem>()
+    lateinit var communicator: Communicator
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,10 +36,11 @@ class CartFragment(private val sharedPreferences: SharedPreferences) : Fragment(
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentCartBinding.inflate(inflater, container, false)
+
         databaseHandler = DatabaseHandler(ContextUtil.getHomeContext())
+        communicator = activity as Communicator
 
         binding.rvShoppingCart.layoutManager = LinearLayoutManager(activity)
-        orderHelper = OrderHelper(ContextUtil.getHomeContext(), this)
 
         getShoppingCart()
 
@@ -51,7 +53,11 @@ class CartFragment(private val sharedPreferences: SharedPreferences) : Fragment(
         }
 
         binding.btnCheckout.setOnClickListener {
-            checkout()
+            if (cart.isNotEmpty()) {
+                checkout()
+            } else {
+                Toast.makeText(context, "Please add at least one item to the cart", Toast.LENGTH_SHORT).show()
+            }
         }
 
         return binding.root
@@ -61,27 +67,23 @@ class CartFragment(private val sharedPreferences: SharedPreferences) : Fragment(
         val checkoutDialog = CheckoutDialog(ContextUtil.getHomeContext())
 
         checkoutDialog.setOnSuccessListener {
-            if (cart.isNotEmpty()) {
-                val payment = Payment("cash")
-                val itemList = ArrayList<Item>()
-                var totalAmount = 0
+            val payment = Payment("cash")
+            val itemList = ArrayList<Item>()
+            var totalAmount = 0
 
-                for (cartItem in cart) {
-                    val item = Item("", cartItem.itemPrice.toInt(), cartItem.itemName, cartItem.itemAmount)
-                    totalAmount += (cartItem.itemAmount * cartItem.itemPrice).toInt()
-                    itemList.add(item)
-                }
-
-                val orderSummary = OrderSummary(0, 0, totalAmount, totalAmount)
-                val userId = sharedPreferences.getString("userid", "")
-                val orderInfo = OrderInfo(orderSummary, payment, itemList, it, userId!!)
-
-                orderHelper.placeOrder(orderInfo)
-
-                checkoutDialog.dismiss()
-            } else {
-                Toast.makeText(context, "Please add at least one item to the cart", Toast.LENGTH_SHORT).show()
+            for (cartItem in cart) {
+                val item = Item("", cartItem.itemPrice.toInt(), cartItem.itemName, cartItem.itemAmount)
+                totalAmount += (cartItem.itemAmount * cartItem.itemPrice).toInt()
+                itemList.add(item)
             }
+
+            val orderSummary = OrderSummary(0, 0, totalAmount, totalAmount)
+            val userId = sharedPreferences.getString("userid", "")
+            val orderInfo = OrderInfo(orderSummary, payment, itemList, it, userId!!)
+
+            communicator.toCheckoutPage(orderInfo)
+
+            checkoutDialog.dismiss()
         }
 
         checkoutDialog.setOnCancelListener {
@@ -130,16 +132,5 @@ class CartFragment(private val sharedPreferences: SharedPreferences) : Fragment(
             dialog.show()
         }
         binding.rvShoppingCart.adapter = adapter
-    }
-
-    override fun onSuccess(error: Boolean, message: String) {
-        if (error) {
-            Toast.makeText(context, "Failed to place order: $message", Toast.LENGTH_SHORT).show()
-        } else {
-            Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
-            databaseHandler.emptyCart()
-            cart.clear()
-            adapter.notifyDataSetChanged()
-        }
     }
 }

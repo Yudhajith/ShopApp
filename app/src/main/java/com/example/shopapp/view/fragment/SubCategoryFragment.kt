@@ -51,7 +51,7 @@ class SubCategoryFragment : Fragment(), SubcategoryView {
         val catImage = arguments?.getString("categoryImage", "")
         adapter = SubcategoriesAdapter(subcategories, catImage!!)
         adapter.setOnSubcategorySelectedListener { subCategory, position ->
-            communicator.toProductsPage(subCategory.subId, subCategory.catId, subCategory.subName)
+            communicator.toProductsPage(subCategory.subId, subCategory.catId, subCategory.subName, catImage)
         }
         binding.rvSubcategories.adapter = adapter
     }

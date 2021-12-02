@@ -12,15 +12,13 @@ import com.example.shopapp.R
 import com.example.shopapp.databinding.ActivityHomeBinding
 import com.example.shopapp.model.adapters.CategoriesAdapter
 import com.example.shopapp.model.data.Data
+import com.example.shopapp.model.data.OrderInfo
 import com.example.shopapp.presenter.Communicator
 import com.example.shopapp.presenter.HomePresenter
 import com.example.shopapp.utils.ContextUtil
 import com.example.shopapp.view.*
 import com.example.shopapp.view.dialog.ProfileDialog
-import com.example.shopapp.view.fragment.CartFragment
-import com.example.shopapp.view.fragment.ProductsFragment
-import com.example.shopapp.view.fragment.ProfileFragment
-import com.example.shopapp.view.fragment.SubCategoryFragment
+import com.example.shopapp.view.fragment.*
 
 class HomeActivity : AppCompatActivity(), HomeView, Communicator {
 
@@ -31,6 +29,7 @@ class HomeActivity : AppCompatActivity(), HomeView, Communicator {
     lateinit var subCategoryFragment: SubCategoryFragment
     lateinit var productsFragment: ProductsFragment
     lateinit var cartFragment: CartFragment
+    lateinit var checkoutFragment: CheckoutFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,6 +40,9 @@ class HomeActivity : AppCompatActivity(), HomeView, Communicator {
         profileFragment = ProfileFragment()
         subCategoryFragment = SubCategoryFragment()
         productsFragment = ProductsFragment()
+
+        val sharedPreferences = getSharedPreferences("ShopApp", Context.MODE_PRIVATE)
+        cartFragment = CartFragment(sharedPreferences)
 
 
         setSupportActionBar(binding.toolbar)
@@ -84,8 +86,6 @@ class HomeActivity : AppCompatActivity(), HomeView, Communicator {
                     binding.drawerLayout.closeDrawers()
                 }
                 R.id.cart -> {
-                    val sharedPreferences = getSharedPreferences("ShopApp", Context.MODE_PRIVATE)
-                    cartFragment = CartFragment(sharedPreferences)
                     binding.root.removeAllViews()
                     supportFragmentManager.beginTransaction().replace(binding.drawerLayout.id, cartFragment).commit()
                 }
@@ -111,6 +111,8 @@ class HomeActivity : AppCompatActivity(), HomeView, Communicator {
             binding.drawerLayout.closeDrawer(GravityCompat.START)
         } else {
             super.onBackPressed()
+            finishAffinity()
+            finish()
         }
     }
 
@@ -129,10 +131,11 @@ class HomeActivity : AppCompatActivity(), HomeView, Communicator {
         binding.rvCategories.adapter = adapter
     }
 
-    override fun toProductsPage(subcategoryID: Int, categoryID: Int, subcategoryName: String) {
+    override fun toProductsPage(subcategoryID: Int, categoryID: Int, subcategoryName: String, catImage: String) {
         val bundle = Bundle()
         bundle.putInt("subcategoryID", subcategoryID)
         bundle.putInt("categoryID", categoryID)
+        bundle.putString("categoryImage", catImage)
         bundle.putString("subcategoryName", subcategoryName)
         val transaction = this.supportFragmentManager.beginTransaction()
         productsFragment.arguments = bundle
@@ -142,5 +145,28 @@ class HomeActivity : AppCompatActivity(), HomeView, Communicator {
         transaction.commit()
     }
 
+    override fun toCheckoutPage(orderInfo: OrderInfo) {
+        checkoutFragment = CheckoutFragment(orderInfo)
+        binding.root.removeAllViews()
+        supportFragmentManager.beginTransaction().replace(binding.drawerLayout.id, checkoutFragment).commit()
+    }
+
+    override fun toCartPage() {
+        supportFragmentManager.beginTransaction().replace(binding.drawerLayout.id, cartFragment).commit()
+    }
+
+    override fun toSubCatPage(
+        subcategoryID: Int,
+        subcategoryName: String,
+        subcategoryImage: String
+    ) {
+        val bundle = Bundle()
+        bundle.putInt("categoryID", subcategoryID)
+        bundle.putString("categoryName", subcategoryName)
+        bundle.putString("categoryImage", subcategoryImage)
+        subCategoryFragment.arguments = bundle
+        binding.root.removeAllViews()
+        supportFragmentManager.beginTransaction().replace(binding.drawerLayout.id, subCategoryFragment).commit()
+    }
 
 }
